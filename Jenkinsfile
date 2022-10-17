@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Pulling ...' ;
                  git branch: 'master',
-                 url : 'https://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@github.com/Symbiose-esprit/SpringBoot.git';           
+                 url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
     }
