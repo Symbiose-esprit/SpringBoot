@@ -7,6 +7,7 @@ pipeline {
                  git branch: 'master',
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
+        }
         stage('Test mvn') {
             steps {
                 echo 'mvn --version'
@@ -14,7 +15,7 @@ pipeline {
                 sh """ mvn clean test """;
             }
         }
-        }
+        
     }
     post {
         always {  
