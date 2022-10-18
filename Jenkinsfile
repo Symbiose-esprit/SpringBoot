@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools { 
+      maven 'MAVEN_HOME' 
+      jdk 'JAVA_HOME' 
+    }
     stages {
         stage('Checkout GIT') {
             steps {
@@ -9,10 +13,9 @@ pipeline {
             }
         }
         stage('Test mvn') {
-            steps {
-                echo 'mvn --version'
-                sh """ mvn clean install """;
-                sh """ mvn clean test """;
+            steps {    
+                sh """ mvn install """;
+                sh """ mvn test """;
             }
         }
         
