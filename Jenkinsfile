@@ -13,7 +13,8 @@ pipeline {
             }
         }
         stage('Test mvn') {
-            steps {    
+            steps {
+            	sh """ mvn -DskipTests clean package """ 
                 sh """ mvn install """;
                 sh """ mvn test """;
             }
