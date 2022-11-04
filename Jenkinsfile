@@ -19,6 +19,11 @@ pipeline {
                 sh """ mvn test """;
             }
         }
+        stage('Mvn SonarQube') {
+            steps {
+            	sh """ mvn sonar:sonar """    
+            }
+        }
         
     }
     post {
