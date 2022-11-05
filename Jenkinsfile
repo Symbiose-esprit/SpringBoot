@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    tools { 
-      maven 'MAVEN_HOME' 
-      jdk 'JAVA_HOME' 
-    }
     stages {
         stage('Checkout GIT') {
             steps {
@@ -25,7 +21,7 @@ pipeline {
             }
         }
         
-    }
+
     post {
         always {  
              echo 'This will always run'  
