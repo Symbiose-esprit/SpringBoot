@@ -16,8 +16,8 @@ pipeline {
 		
         stage('Test mvn') {
             steps {
-            	sh """ mvn clean """
-                sh """ mvn install """;
+            	sh """ mvn install """
+                sh """ mvn clean """;
                 sh """ mvn test """;
             }
         }
