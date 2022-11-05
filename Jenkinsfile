@@ -1,4 +1,7 @@
-node {
+pipeline {
+    agent any
+
+    node {
     def WORKSPACE = "/var/lib/jenkins/workspace/springboot-devops"
     def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
 
