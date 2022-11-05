@@ -19,7 +19,9 @@ pipeline {
         }
        stage('MVN COMPILE') {
             steps {
-                sh 'mvn compile'
+            	sh """ mvn -DskipTests clean package """ 
+                sh """ mvn install """;
+                sh """ mvn test """;
             }
         }
         
