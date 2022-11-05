@@ -1,11 +1,11 @@
-FROM maven:3-jdk-8-alpine AS build
+FROM maven:3-openjdk-11 AS build
 
 WORKDIR /opt/app
 
 COPY ./ /opt/app
 RUN mvn clean install -DskipTests
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:11-jdk
 
 COPY --from=build /opt/app/target/*.jar app.jar
 
