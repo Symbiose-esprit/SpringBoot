@@ -5,7 +5,7 @@ pipeline {
       jdk 'JAVA_HOME' 
     }
     stages {
-		/*
+	
         stage('Checkout GIT') {
             steps {
                 echo 'Pulling ...' ;
@@ -13,10 +13,10 @@ pipeline {
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
-		*/
+		
         stage('Test mvn') {
             steps {
-            	sh """ mvn -DskipTests clean package """ 
+            	sh """ mvn clean package """ 
                 sh """ mvn install """;
                 sh """ mvn test """;
             }
