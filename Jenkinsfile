@@ -7,7 +7,6 @@ node {
         stage('Clone Repo') {
             git branch: 'mahdi',
             git url : 'https://github.com/Symbiose-esprit/SpringBoot.git',
-                credentialsId: '307a3184-b702-486c-bdca-a208080ae8f3',
                 branch: 'mahdi'
         }
         stage('Build Docker'){
