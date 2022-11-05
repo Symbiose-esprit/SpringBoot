@@ -8,11 +8,14 @@ pipeline {
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
-        stage('Test mvn') {
+         stage('MNV CLEAN') {
             steps {
-            	sh """ mvn -DskipTests clean package """ 
-                sh """ mvn install """;
-                sh """ mvn test """;
+                sh 'mvn clean'
+            }
+        }
+       stage('MVN COMPILE') {
+            steps {
+                sh 'mvn compile'
             }
         }
         
