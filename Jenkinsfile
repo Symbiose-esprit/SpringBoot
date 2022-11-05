@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    tools { 
-      maven 'M2_HOME'
-      jdk 'JAVA_HOME' 
-    }
+
     stages {
         stage('Checkout GIT') {
             steps {
@@ -15,6 +12,7 @@ pipeline {
 
         stage('Test mvn') {
             steps {
+                echo """maven -version"""
             	sh """ mvn -DskipTests clean package """ 
                 sh """ mvn install """;
                 sh """ mvn test """;
