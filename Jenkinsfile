@@ -1,8 +1,13 @@
 node {
+
     def WORKSPACE = "/var/lib/jenkins/workspace/springboot-devops"
     def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
 
     try{
+        tools {
+          maven 'MAVEN_HOME'
+          jdk 'JAVA_HOME'
+        }
         stage('Clone repo GIT') {
             git url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
                 branch: 'mahdi',
