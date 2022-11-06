@@ -9,10 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+@Builder
 @Entity
 @Getter
 @Setter
@@ -32,4 +35,12 @@ public class CategorieProduit implements Serializable {
 	@OneToMany(mappedBy = "categorieProduit")
 	@JsonIgnore
 	private Set<Produit> produits;
+
+	public CategorieProduit(String codeCategorie, String libelleCategorie, Set<Produit> produits) {
+		super();
+		this.codeCategorie = codeCategorie;
+		this.libelleCategorie = libelleCategorie;
+		this.produits = produits;
+	}
+
 }

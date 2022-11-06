@@ -41,8 +41,6 @@ public class ProduitServiceImpl implements IProduitService {
 		return p;
 	}
 
-	
-
 	@Override
 	public void deleteProduit(Long produitId) {
 		produitRepository.deleteById(produitId);
@@ -69,5 +67,13 @@ public class ProduitServiceImpl implements IProduitService {
 
 	}
 
+	public void deleteProductsByCategory(String codeCat) {
+		List<Produit> prs = produitRepository.findAll();
+		for (Produit produit : prs) {
+			if (produit.getCategorieProduit().getCodeCategorie().equals(codeCat)) {
+				produitRepository.delete(produit);
+			}
+		}
+	}
 
 }
