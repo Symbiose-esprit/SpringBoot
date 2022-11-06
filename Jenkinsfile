@@ -4,10 +4,6 @@ node {
     def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
 
     try{
-        tools {
-          maven 'MAVEN_HOME'
-          jdk 'JAVA_HOME'
-        }
         stage('Clone repo GIT') {
             steps {
                 git branch: 'mahdi',
