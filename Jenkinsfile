@@ -16,7 +16,7 @@ pipeline {
             steps {
             	sh """ mvn -DskipTests clean package """ 
                 sh """ mvn install """;
-                sh """ mvn test """;
+                
             }
         }
         stage('Mvn SonarQube') {
