@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Mvn SonarQube') {
             steps {
-            	sh """ mvn verify sonar:sonar -Dsonar.login=a263237445b78211e8c03ce2e369839ea990ff51 """    
+            	sh """ mvn verify sonar:sonar -Dsonar.login=admin  -Dsonar.password=admin"""    
             }
         }
         
