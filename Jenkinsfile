@@ -15,17 +15,14 @@ pipeline {
         }
         stage('Test mvn') {
             steps {
-            	sh """ mvn install """
+            	sh """ mvn install """;
                 sh """ mvn clean """;
                 sh """ mvn test """;
             }
         }
         stage('Mvn SonarQube') {
             steps {
-            	sh """ mvn sonar:sonar \
-                         -Dsonar.projectKey=springboot-devops \
-                         -Dsonar.host.url=http://192.168.56.4:9000 \
-                         -Dsonar.login=token "token"
+            	sh """ mvn sonar:sonar -Dsonar.projectKey=springboot-devops -Dsonar.host.url=http://192.168.56.4:9000 -Dsonar.login=token """;
             }
         }
     }
