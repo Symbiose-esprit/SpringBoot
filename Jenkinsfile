@@ -8,7 +8,7 @@ pipeline {
         stage('Checkout GIT') {
             steps {
                 echo 'Pulling ....' ;
-                 git branch: 'master',
+                 git branch: 'maryem',
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
