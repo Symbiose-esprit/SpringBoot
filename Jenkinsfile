@@ -1,8 +1,3 @@
-
-def WORKSPACE = "/var/lib/jenkins/workspace/springboot-devops"
-def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
-
-
 pipeline {
     agent any
 
@@ -17,14 +12,6 @@ pipeline {
                 git branch: 'mahdi',
                 url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
             }
-        }
-        stage('Build Docker'){
-            dockerImage = docker.build("springboot-devops:${env.BUILD_NUMBER}")
-        }
-        stage('Deploy Docker'){
-            echo "Docker Image Tag Name: ${dockerImageTag}"
-            sh "docker stop springboot-devops || true && docker rm springboot-devops || true"
-            sh "docker run --name springboot-devops -d -p 8081:8080 springboot-devops:${env.BUILD_NUMBER}"
         }
         stage('Test mvn') {
             steps {
