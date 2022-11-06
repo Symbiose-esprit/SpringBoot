@@ -9,8 +9,10 @@ node {
           jdk 'JAVA_HOME'
         }
         stage('Clone repo GIT') {
-            git url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
-                branch: 'mahdi',
+            steps {
+                git branch: 'mahdi',
+                url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
+            }
         }
         stage('Build Docker'){
             dockerImage = docker.build("springboot-devops:${env.BUILD_NUMBER}")
