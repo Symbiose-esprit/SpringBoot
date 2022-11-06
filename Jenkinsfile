@@ -1,8 +1,10 @@
+
+def WORKSPACE = "/var/lib/jenkins/workspace/springboot-devops"
+def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
+
+
 pipeline {
     agent any
-
-    def WORKSPACE = "/var/lib/jenkins/workspace/springboot-devops"
-    def dockerImageTag = "springboot-devops${env.BUILD_NUMBER}"
 
     tools {
       maven 'MAVEN_HOME'
