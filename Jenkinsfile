@@ -5,18 +5,17 @@ pipeline {
       jdk 'JAVA_HOME' 
     }
     stages {
-        stage('Checkout GIT') {
+         stage('Clone repo GIT') {
             steps {
-                echo 'Pulling ...' ;
-                 git branch: 'master',
-                 url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
+                git branch: 'mahdi',
+                url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
             }
         }
         stage('Test mvn') {
             steps {
-            	sh """ mvn -DskipTests clean package """ 
-                sh """ mvn install """;
-                
+            	sh """ mvn install """;
+                sh """ mvn clean """;
+                sh """ mvn test """;
             }
         }
         stage('Nexus') {    
