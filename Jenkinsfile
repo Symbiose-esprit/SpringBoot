@@ -12,13 +12,28 @@ pipeline {
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
-        stage('Test mvn') {
+	stage('Cleaning the project') {         
             steps {
-            	sh """ mvn -DskipTests clean package """ 
-                sh """ mvn install """;
-                
+                echo 'cleaning project ...'
+                sh 'mvn clean'
             }
         }
+	stage('Artifact Construction') {                 
+            steps {
+                echo "artificat contruction"
+                sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
+            }
+        }
+	stage('Compiling the artifact') {      
+            steps {
+		echo "compiling"
+                sh 'mvn compile'
+               
+            }
+        }
+
+        
+
         stage('Mvn SonarQube') {
             steps {
 		jacoco(execPattern: 'target/jacoco.exec')
