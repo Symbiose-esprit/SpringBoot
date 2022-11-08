@@ -76,6 +76,16 @@ pipeline {
         }
         
     }
+	stage('Test JUnit/Mockito') {         
+            steps {
+               
+            sh 'mvn test -Ptests,extra-tests,jacoco'
+	    sh 'mvn verify -Pjacoco-generate-report -DskipTests'
+               
+            }
+        }
+        
+    }
     post {
         always {  
              echo 'This will always run'  
