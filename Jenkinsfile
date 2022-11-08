@@ -39,6 +39,7 @@ pipeline {
             }
         }
         */
+        /*
         stage('Build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:latest .'
@@ -52,6 +53,7 @@ pipeline {
                 sh 'docker mahdibehi/springboot-devops:latest'
             }
         }
+        */
         /*
         stage('Docker Compose') {
              steps {
