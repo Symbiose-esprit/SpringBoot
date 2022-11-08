@@ -75,7 +75,6 @@ pipeline {
             }
         }
         
-    }
 	stage('Test JUnit/Mockito') {         
             steps {
                
