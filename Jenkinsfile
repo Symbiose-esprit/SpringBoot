@@ -39,12 +39,12 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
+                sh """ docker build -t mahdibehi/springboot-devops:jenkins . """
             }
         }
         stage('Deploy Image') {
             steps {
-                sh 'docker push mahdibehi/springboot-devops:jenkins'
+                sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
         }
         /*
