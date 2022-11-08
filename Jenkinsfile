@@ -80,7 +80,7 @@ pipeline {
                
             sh 'mvn test -Ptests,extra-tests,jacoco'
 	    sh 'mvn verify -Pjacoco-generate-report -DskipTests'
-               
+            jacoco(execPattern: 'target/jacoco.exec') 
             }
         }
         
