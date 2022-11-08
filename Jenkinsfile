@@ -40,12 +40,15 @@ pipeline {
         }*/
         stage('Build Image') {
             steps {
-                sh """ docker build -t mahdibehi/springboot-devops:jenkins . """
+                sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
             }
         }
         stage('Deploy Image') {
             steps {
-                sh """ docker push mahdibehi/springboot-devops:jenkins """
+                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                    sh "docker login -u mahdibehi -p ${dockerHubPwd}"
+                }
+                sh 'docker mahdibehi/springboot-devops:jenkins'
             }
         }
         /*
