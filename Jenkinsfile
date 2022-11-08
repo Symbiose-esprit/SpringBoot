@@ -45,10 +45,8 @@ pipeline {
         }
         stage('Deploy Image') {
             steps {
-                withCredentials([string(credentialsId: 'dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44' , variable: 'dockerHubPwd')]) {
-                    sh "docker login -u mahdibehi -p ${dockerHubPwd}"
-                }
-                sh 'docker mahdibehi/springboot-devops:jenkins'
+                sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
+                sh """ docker mahdibehi/springboot-devops:jenkins """
             }
         }
         /*
