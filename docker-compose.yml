@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
- mysqldb:
+ mysql-devops:
     container_name: mysql-devops
     image: mysql:5.7
     restart: unless-stopped
@@ -14,7 +14,7 @@ services:
       - db:/var/lib/mysql
       
     
- spring:
+ spring-devops:
     depends_on:
       - mysql-devops
     container_name: springboot-devops
