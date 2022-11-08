@@ -49,13 +49,11 @@ pipeline {
                 sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
         }
-        /*
         stage('Docker Compose') {
              steps {
                 sh 'docker-compose up -d'
              }
         }
-        */
     }
     post {
         always {
