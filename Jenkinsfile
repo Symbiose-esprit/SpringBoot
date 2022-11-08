@@ -30,7 +30,6 @@ pipeline {
             	sh """ mvn sonar:sonar -Dsonar.projectKey=springboot-devops -Dsonar.host.url=http://192.168.56.4:9000 -Dsonar.login="c7fd00e60ced552e1b184a3cbf62ef9e2095b9a0" """;
             }
         }
-        /*
         stage('Nexus Script') {
             steps {
                 script {
@@ -38,7 +37,6 @@ pipeline {
                 }
             }
         }
-        */
         stage('Build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
