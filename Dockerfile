@@ -1,17 +1,5 @@
-FROM maven:3-openjdk-11 AS build
+FROM openjdk:11
+EXPOSE 80
 
-WORKDIR /opt/app
-
-COPY ./ /opt/app
-RUN mvn clean install -DskipTests
-
-FROM openjdk:11-jdk
-
-COPY --from=build /opt/app/target/*.jar app.jar
-
-ENV PORT 8081
-EXPOSE $PORT
-
-ENTRYPOINT ["java", "-jar", "-Xmx1024M","-Dserver.port=${PORT}","app.jar"]
-
-
+ADD http://192.168.56.4/:8081/repository/maven-releases/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
+ENTRYPOINT ["java","-jar","tpAchatProject.jar"]
