@@ -61,7 +61,7 @@ pipeline {
         
                
             }
-            sh 'docker aminelaajimi/tpachatprojet:1.0.0'
+            sh 'docker push aminelaajimi/tpachatprojet:1.0.0'
         }        
 
     }
