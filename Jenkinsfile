@@ -13,19 +13,6 @@ pipeline {
                 url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
             }
         }
-        stage('Build Image') {
-                    steps {
-                        sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
-                    }
-                }
-                stage('Deploy Image') {
-                    steps {
-                        withCredentials([string(credentialsId: ${params.docker_pwd} , variable: 'dockerHubPwd')]) {
-                            sh "docker login -u mahdibehi -p ${dockerHubPwd}"
-                        }
-                        sh 'docker mahdibehi/springboot-devops:jenkins'
-                    }
-                }
         stage('Mvn Scripts') {
             steps {
                 echo 'cleaning project ...'
@@ -51,7 +38,19 @@ pipeline {
                 }
             }
         }*/
-
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
+            }
+        }
+        stage('Deploy Image') {
+            steps {
+                withCredentials([string(credentialsId: 'dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44' , variable: 'dockerHubPwd')]) {
+                    sh "docker login -u mahdibehi -p ${dockerHubPwd}"
+                }
+                sh 'docker mahdibehi/springboot-devops:jenkins'
+            }
+        }
         /*
         stage('Docker Compose') {
              steps {
