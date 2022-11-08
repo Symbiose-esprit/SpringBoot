@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Deploy Image') {
             steps {
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'dockerHubPwd')]) {
                     sh "docker login -u mahdibehi -p ${dockerHubPwd}"
                 }
                 sh 'docker mahdibehi/springboot-devops:jenkins'
