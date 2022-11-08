@@ -48,7 +48,7 @@ pipeline {
 	stage('Building our image') {      
             steps {
                
-		sh 'docker build -t aminelaajimi/tpachatprojet:1.0.0 .'
+		sh 'sudo docker build -t aminelaajimi/tpachatprojet:1.0.0 .'
                
             }
         }
@@ -58,11 +58,11 @@ pipeline {
             steps {
                
 		 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-      		  sh "docker login -u aminelaajimi -p ${dockerHubPwd}"
+      		  sh " sudo docker login -u aminelaajimi -p ${dockerHubPwd}"
         
                
             }
-            sh 'docker aminelaajimi/tpachatprojet:1.0.0'
+            sh 'sudo docker aminelaajimi/tpachatprojet:1.0.0'
         }        
 
     }
