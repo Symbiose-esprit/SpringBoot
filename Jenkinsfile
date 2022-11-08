@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
-                sh """ docker mahdibehi/springboot-devops:jenkins """
+                sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
         }
         /*
