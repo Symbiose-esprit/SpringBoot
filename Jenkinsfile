@@ -48,7 +48,7 @@ pipeline {
 	stage('Building our image') {      
             steps {
                
-		sh 'docker build -t aminelaajimi/tpAchatProjet:1.0.0 .'
+		sh 'docker build -t aminelaajimi/tpachatprojet:1.0.0 .'
                
             }
         }
@@ -62,7 +62,7 @@ pipeline {
         
                
             }
-            sh 'docker aminelaajimi/tpAchatProjet:1.0.0'
+            sh 'docker aminelaajimi/tpachatprojet:1.0.0'
         }        
 
     }
