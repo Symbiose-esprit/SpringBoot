@@ -15,9 +15,14 @@ pipeline {
         }
         stage('Mvn Scripts') {
             steps {
-            	sh """ mvn install """;
-                sh """ mvn clean """;
-                sh """ mvn test """;
+                echo 'cleaning project ...'
+                sh 'mvn clean'
+
+                echo 'artifact construction ...'
+                sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
+
+                echo 'compiling project ...'
+                sh 'mvn compile'
             }
         }
         stage('Mvn SonarQube') {
