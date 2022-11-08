@@ -32,15 +32,15 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t mahdibehi/springboot-devops:latest .'
+                sh 'sudo docker build -t mahdibehi/springboot-devops:latest .'
             }
         }
         stage('Deploy Image') {
             steps {
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u mahdibehi -p ${dockerHubPwd}"
+                    sh "sudo docker login -u mahdibehi -p ${dockerHubPwd}"
                 }
-                sh 'docker mahdibehi/springboot-devops:latest'
+                sh 'sudo docker mahdibehi/springboot-devops:latest'
             }
         }
     }
