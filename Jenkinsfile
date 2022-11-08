@@ -33,7 +33,7 @@ pipeline {
         stage('Nexus Script') {
             steps {
                 script {
-                	sh """ mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.4:8081//repository/maven-releases/ -Dfile=target/tpAchatProject-1.0.jar """
+                	sh """ mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.4:8081/repository/maven-releases/ -Dfile=target/tpAchatProject-1.0.jar """
                 }
             }
         }
@@ -44,10 +44,7 @@ pipeline {
         }
         stage('Deploy Image') {
             steps {
-                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u mahdibehi -p ${dockerHubPwd}"
-                }
-                sh 'docker mahdibehi/springboot-devops:jenkins'
+                sh 'docker push mahdibehi/springboot-devops:jenkins'
             }
         }
         /*
