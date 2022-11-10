@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  mysql-devops:
+  mysqlspring:
       container_name: mysqlspring
       image: mysql:5.7
       restart: unless-stopped
