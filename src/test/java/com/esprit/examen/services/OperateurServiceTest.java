@@ -1,39 +1,46 @@
 package com.esprit.examen.services;
 
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.esprit.examen.entities.*;
 import com.esprit.examen.repositories.FactureRepository;
 import com.esprit.examen.repositories.OperateurRepository;
-import lombok.var;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
+@ExtendWith(MockitoExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Slf4j
+class OperateurServiceTest {
 
-import static org.junit.Assert.assertNull;
-
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-public class OperateurServiceTest {
-
-    @Autowired
-    OperateurRepository operateurRepository;
-
-    @Autowired
+	@Mock
+	OperateurRepository operateurRepository;
+	@Mock
     FactureRepository factureRepository;
-    @Autowired
-    OperateurServiceImpl operateurService;
+
+	@InjectMocks
+	OperateurServiceImpl operateurService;
+
     @AfterEach
     void
     setDown() {
@@ -76,18 +83,4 @@ public class OperateurServiceTest {
         Assertions.assertEquals("admin",rs.get(0).getNom());
         Assertions.assertNotNull(operateur.getFactures());
     }
-
-/*     @Test
-    public void deleteOperateur(){
-        var operateur = new Operateur();
-        operateur.setNom("hello");
-        operateur.setPrenom("hello");
-        operateur.setPassword("admin");
-        var rs = operateurRepository.save(operateur);
-
-        operateurService.deleteOperateur(rs.getIdOperateur());
-        assertNull(operateurService.retrieveOperateur(rs.getIdOperateur()));
-    } */
-
-
 }
