@@ -29,6 +29,11 @@ pipeline {
             }
         }
 
+       stage('JUNIT/MVN Mockito') {
+            steps {
+                sh 'mvn test'
+            }
+        }
         stage('NEXUS'){
             steps{
                 sh 'mvn deploy -DskipStaging=true'
