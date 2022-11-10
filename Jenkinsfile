@@ -13,7 +13,7 @@ pipeline {
                 url : 'https://github.com/Symbiose-esprit/SpringBoot.git';
             }
         }
-        /*
+
         stage('Mvn Scripts') {
             steps {
                 echo 'cleaning project ...'
@@ -39,13 +39,13 @@ pipeline {
                 sh 'docker-compose -f docker-compose-sonexus.yml up -d'
              }
         }
-        /*
+
         stage('Mvn SonarQube') {
             steps {
             	sh """ mvn sonar:sonar -Dsonar.projectKey=springboot-devops -Dsonar.host.url=http://192.168.56.4:9000 -Dsonar.login="eba03a61a8ad621f33f6f8c06687de49aa493e4d" """;
             }
         }
-        /*
+
         stage('Nexus Script') {
             steps {
                 script {
@@ -53,26 +53,26 @@ pipeline {
                 }
             }
         }
-        /*
+
         stage('Clean install') {
              steps {
                 sh 'mvn clean package -DskipTests'
              }
         }
-        /*
+
         stage('Docker build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
             }
         }
 
-        /*
         stage('Docker push to Dockerhub') {
             steps {
                 sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
+                sh """ cat ~/.docker/config.json """
                 sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
-        }*/
+        }
 
         stage('Docker compose up') {
              steps {
