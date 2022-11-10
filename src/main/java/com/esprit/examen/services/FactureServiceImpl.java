@@ -1,5 +1,6 @@
 package com.esprit.examen.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -92,24 +93,39 @@ public class FactureServiceImpl implements IFactureService {
 
 	@Override
 	public Facture retrieveFacture(Long factureId) {
-
+        
 		Facture facture = factureRepository.findById(factureId).orElse(null);
-		log.info("facture :" + facture);
-		return facture;
+		Facture facturevide = new Facture();
+		if(facture!= null){
+			log.info("facture :" + facture);
+			return facture;
+	        }else {
+		     return facturevide;
+	        }
 	}
 
 	@Override
 	public List<Facture> getFacturesByFournisseur(Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		return (List<Facture>) fournisseur.getFactures();
+		 List<Facture> listfournisseurvide = new ArrayList<Facture>();
+		if(fournisseur!=null) {
+		return (List<Facture>)fournisseur.getFactures();
+		}else {
+		return 	listfournisseurvide;
+		}
 	}
 
 	@Override
 	public void assignOperateurToFacture(Long idOperateur, Long idFacture) {
 		Facture facture = factureRepository.findById(idFacture).orElse(null);
 		Operateur operateur = operateurRepository.findById(idOperateur).orElse(null);
-		operateur.getFactures().add(facture);
-		operateurRepository.save(operateur);
+
+		if((facture!=null) && (operateur!=null)) {
+			operateur.getFactures().add(facture);
+			operateurRepository.save(operateur);
+			}else {
+				log.info("cette facture ou cet operateur n'existe pas ");
+			}
 	}
 
 	@Override
