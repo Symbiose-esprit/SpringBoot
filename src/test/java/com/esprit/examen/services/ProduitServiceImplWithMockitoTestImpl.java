@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
-class ProduitServiceImplWithMockitoTest {
+class ProduitServiceImplWithMockitoTestImpl {
 
 	@Mock
 	ProduitRepository pr;
