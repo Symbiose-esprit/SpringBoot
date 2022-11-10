@@ -27,6 +27,12 @@ pipeline {
             }
         }
 
+        stage('Maven junit tests'){
+            steps{
+                sh 'mvn test -Dtest=SecteurActivTest'
+            }
+        }
+
         stage('Docker Compose Sonexus') {
              steps {
                 sh 'docker-compose -f docker-compose-sonexus.yml up -d'
@@ -67,18 +73,10 @@ pipeline {
             }
         }*/
 
-        stage('Docker deploy app') {
+        stage('Docker compose up') {
              steps {
                 sh 'docker-compose up -d'
              }
-        }
-
-        stage("wait for testing") {
-            steps {
-                script {
-                    sh "sleep 60"
-                }
-            }
         }
 
         stage("Postman tests") {
