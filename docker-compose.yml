@@ -34,6 +34,18 @@ services:
       stdin_open: true
       tty: true
 
+  front-devops:
+      container_name: front-devops
+      image: mahdibehi/front-devops:jenkins
+      build:
+        context: angular # Use an image built from the specified dockerfile in the `angular` directory.
+        dockerfile: Dockerfile
+      ports:
+        - "4401:4401" # Map the exposed port 80 on the container to port 8081 on the host machine
+      restart: always
+      depends_on:
+        - spring-devops
+
   
 
 volumes:

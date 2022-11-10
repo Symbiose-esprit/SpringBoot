@@ -4,7 +4,6 @@ pipeline {
     tools {
       maven 'MAVEN_HOME'
       jdk 'JAVA_HOME'
-      nodejs 'NODE'
     }
     stages {
 
@@ -79,14 +78,6 @@ pipeline {
              steps {
                 sh 'docker-compose up -d'
              }
-        }
-
-        stage("Postman tests") {
-            steps {
-                script {
-                    sh "newman run https://www.postman.com/collections/b7c659f9bb0ae1cd4656"
-                }
-            }
         }
         
     }
