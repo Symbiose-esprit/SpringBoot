@@ -19,11 +19,7 @@ pipeline {
                 sh """ mvn test """;
             }
         }
-        stage('Tests unitaires') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+
         stage('Mvn SonarQube') {
             steps {
                 jacoco(execPattern: 'target/jacoco.exec')
@@ -56,6 +52,11 @@ pipeline {
              steps {
                 sh 'docker-compose up -d'
              }
+        }
+        stage('Tests unitaires') {
+            steps {
+                sh 'mvn test'
+            }
         }
     }
 
