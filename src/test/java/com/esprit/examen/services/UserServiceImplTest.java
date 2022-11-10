@@ -1,4 +1,4 @@
-package com.esprit.examen.services;
+/* package com.esprit.examen.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -59,4 +59,4 @@ public class UserServiceImplTest {
 		verify(repository, times(1)).delete(user);
 	}
 
-}
+} */
