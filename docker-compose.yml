@@ -40,15 +40,14 @@ services:
       build:
         context: angular # Use an image built from the specified dockerfile in the `angular` directory.
         dockerfile: Dockerfile
-        args:
-          API_BASE_URL: http://127.0.0.1:8080/
       ports:
-        - "4402:80" # Map the exposed port 80 on the container to port 8081 on the host machine
+        - '4200:4200' # Port mapping
+      command: >
+        bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
       restart: always
       depends_on:
         - spring-devops
 
-  
 
 volumes:
   db:
