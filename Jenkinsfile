@@ -29,7 +29,8 @@ pipeline {
 
         stage('Maven junit tests'){
             steps{
-                sh 'mvn test -Dtest=SecteurActivTest'
+                sh 'mvn test -Dtest=SecteurActivTest -DfailIfNoTests=false'
+                sh 'mvn test -Dtest=ProduitServiceImplTestImpl -DfailIfNoTests=false'
             }
         }
 
