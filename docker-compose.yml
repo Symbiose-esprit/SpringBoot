@@ -14,11 +14,11 @@ services:
         - db:/var/lib/mysql
       
     
-  spring-devops:
+  spring:
       depends_on:
-        - mysql-devops
-      container_name: springboot-devops
-      image: mahdibehi/springboot-devops:jenkins
+        - mysql
+      container_name: spring
+      image: oussemamestiri/spring:jenkins
       restart: on-failure
       ports:
         - "8089:8089"
