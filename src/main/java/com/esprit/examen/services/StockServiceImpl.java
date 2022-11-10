@@ -3,10 +3,13 @@ package com.esprit.examen.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -76,11 +79,6 @@ public class StockServiceImpl implements IStockService {
 					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
 					+ " inférieur à la quantité minimale a ne pas dépasser de " + stocksEnRouge.get(i).getQteMin()
 					+ newLine);
-//			finalMessage = newLine + finalMessage + msgDate + newLine + ": le stock "
-//					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
-//					+ " inférieur à la quantité minimale a ne pas dépasser de " + stocksEnRouge.get(i).getQteMin()
-//					+ newLine;
-
 		}
 		if (finalMessage != null) {
 			log.info(finalMessage.toString());
