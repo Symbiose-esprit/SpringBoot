@@ -17,7 +17,6 @@ services:
   spring:
       depends_on:
         - mysqlspring
-      container_name: spring
       image: oussemamestiri/spring:jenkins
       restart: on-failure
       ports:
