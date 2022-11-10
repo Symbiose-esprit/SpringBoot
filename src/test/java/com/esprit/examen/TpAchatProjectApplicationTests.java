@@ -1,4 +1,4 @@
-/* package com.esprit.examen;
+package com.esprit.examen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,4 +10,4 @@ class TpAchatProjectApplicationTests {
 	void contextLoads() {
 	}
 
-} */
+}
