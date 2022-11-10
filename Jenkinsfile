@@ -47,13 +47,12 @@ pipeline {
             }
         }
 
-        /*
         stage('Build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
             }
         }
-
+        
         stage('Deploy Image') {
             steps {
                 sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
@@ -66,7 +65,6 @@ pipeline {
                 sh 'docker-compose up -d'
              }
         }
-        */
         
     }
     post {
