@@ -19,6 +19,11 @@ pipeline {
                 sh """ mvn test """;
             }
         }
+        stage('Tests unitaires') {
+            steps {
+                sh 'mvn clean install -DforkCount=0'
+            }
+        }
         stage('Mvn SonarQube') {
             steps {
                 jacoco(execPattern: 'target/jacoco.exec')
