@@ -16,7 +16,6 @@ import com.esprit.examen.services.IFournisseurService;
 
 import io.swagger.annotations.Api;
 
-
 @RestController
 @Api(tags = "Gestion des fournisseurss")
 @RequestMapping("/fournisseur")
@@ -29,8 +28,8 @@ public class FournisseurRestController {
 	@GetMapping("/retrieve-all-fournisseurs")
 	@ResponseBody
 	public List<Fournisseur> getFournisseurs() {
-		List<Fournisseur> fournisseurs = fournisseurService.retrieveAllFournisseurs();
-		return fournisseurs;
+		return fournisseurService.retrieveAllFournisseurs();
+
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/retrieve-fournisseur/8
@@ -44,11 +43,10 @@ public class FournisseurRestController {
 	@PostMapping("/add-fournisseur")
 	@ResponseBody
 	public Fournisseur addFournisseur(@RequestBody Fournisseur f) {
-		Fournisseur fournisseur = fournisseurService.addFournisseur(f);
-		return fournisseur;
+		return fournisseurService.addFournisseur(f);
+
 	}
 
-	// http://localhost:8089/SpringMVC/fournisseur/remove-fournisseur/{fournisseur-id}
 	@DeleteMapping("/remove-fournisseur/{fournisseur-id}")
 	@ResponseBody
 	public void removeFournisseur(@PathVariable("fournisseur-id") Long fournisseurId) {
@@ -63,9 +61,10 @@ public class FournisseurRestController {
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/assignSecteurActiviteToFournisseur/1/5
-		@PutMapping(value = "/assignSecteurActiviteToFournisseur/{idSecteurActivite}/{idFournisseur}")
-		public void assignProduitToStock(@PathVariable("idSecteurActivite") Long idSecteurActivite, @PathVariable("idFournisseur") Long idFournisseur) {
-			fournisseurService.assignSecteurActiviteToFournisseur(idSecteurActivite, idFournisseur);
-		}
+	@PutMapping(value = "/assignSecteurActiviteToFournisseur/{idSecteurActivite}/{idFournisseur}")
+	public void assignProduitToStock(@PathVariable("idSecteurActivite") Long idSecteurActivite,
+			@PathVariable("idFournisseur") Long idFournisseur) {
+		fournisseurService.assignSecteurActiviteToFournisseur(idSecteurActivite, idFournisseur);
+	}
 
 }

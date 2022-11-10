@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
-public class ProduitServiceImplWithMockitoTest {
+class ProduitServiceImplWithMockitoTest {
 
 	@Mock
 	ProduitRepository pr;
@@ -48,7 +48,7 @@ public class ProduitServiceImplWithMockitoTest {
 
 	@Test
 	@Order(3)
-	public void deleteProductsByCategory() throws ParseException {
+	void deleteProductsByCategory() throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = dateFormat.parse("01/09/2022");
 		Date date2 = dateFormat.parse("14/12/2022");

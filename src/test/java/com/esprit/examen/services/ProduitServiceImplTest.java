@@ -2,6 +2,7 @@ package com.esprit.examen.services;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
-public class ProduitServiceImplTest {
+class ProduitServiceImplTest {
 	@Autowired
 	IProduitService ps;
 	@Autowired
@@ -56,7 +57,7 @@ public class ProduitServiceImplTest {
 
 	@Test
 	@Order(0)
-	public void addProduitTest() throws ParseException {
+	void addProduitTest() throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = dateFormat.parse("01/09/2022");
 		Date date2 = dateFormat.parse("14/12/2022");
@@ -75,13 +76,13 @@ public class ProduitServiceImplTest {
 		p = ps.addProduit(p);
 		log.info("this is the added product : " + p.toString());
 		assertNotNull(p.getIdProduit());
-		assertNotNull(p.getPrix());
+		assertNotEquals(0, p.getPrix());
 		assertTrue(p.getDateDerniereModification().compareTo(p.getDateCreation()) >= 0);
 	}
 
 	@Test
 	@Order(1)
-	public void updateStockTest() throws ParseException {
+	void updateStockTest() throws ParseException {
 		List<Produit> prods = ps.retrieveAllProduits();
 		log.info("this is all the products : " + prods.toString());
 		assertNotNull(prods);
