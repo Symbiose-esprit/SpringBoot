@@ -17,7 +17,7 @@ services:
  spring:
     depends_on:
       - mysqldb
-    image: aminelaajimi/tpachatprojet:1.0.0
+    image: aminelaajimi/tpachatprojet
     container_name: projetachat
     restart: on-failure
     ports:
