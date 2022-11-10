@@ -12,19 +12,17 @@ pipeline {
                  url : 'https://github.com/Symbiose-esprit/SpringBoot.git';           
             }
         }
-		stage('Artifact Construction') {                 
+	   stage('MNV CLEAN') {
 		            steps {
-		                echo "artificat contruction"
-		                sh 'mvn package -Dmaven.test.skip=true -P test-coverage'
+		                sh 'mvn clean'
 		            }
-	        }
-		stage('Compiling the artifact') {      
-	            steps {
-			echo "compiling"
-	                sh 'mvn compile'
-	               
-	            }
         }
+       stage('MVN COMPILE') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+
         stage('MVN SONARQUBE') {
             steps {
                 sh 'mvn sonar:sonar  -Dsonar.login=admin -Dsonar.password=yassou'
