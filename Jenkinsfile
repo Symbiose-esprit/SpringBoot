@@ -22,7 +22,7 @@ pipeline {
         stage('Mvn SonarQube') {
             steps {
             	sh """ mvn verify sonar:sonar Dsonar.host.url=http://192.168.33.10:9000/ 
-                              -Dsonar.login=admin   -Dsonar.password=sonar """ 
+                              -Dsonar.login=admin  -Dsonar.password=sonar """ 
             }
         }
         
