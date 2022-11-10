@@ -37,11 +37,6 @@ services:
   front-devops:
       container_name: front-devops
       image: mahdibehi/front-devops:jenkins
-      build:
-        context: angular # Use an image built from the specified dockerfile in the `angular` directory.
-        dockerfile: Dockerfile
-        args:
-          API_BASE_URL: http://127.0.0.1:8080/
       ports:
         - '4200:4200' # Port mapping
       command: >
