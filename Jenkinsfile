@@ -32,11 +32,10 @@ pipeline {
                 sh 'docker-compose -f docker-compose-sonexus.yml up -d'
              }
         }
-
-        /*
+        
         stage('Mvn SonarQube') {
             steps {
-            	sh """ mvn sonar:sonar -Dsonar.projectKey=springboot-devops -Dsonar.host.url=http://192.168.56.4:9000 -Dsonar.login="c7fd00e60ced552e1b184a3cbf62ef9e2095b9a0" """;
+            	sh """ mvn sonar:sonar -Dsonar.projectKey=springboot-devops -Dsonar.host.url=http://192.168.56.4:9000 -Dsonar.login="eba03a61a8ad621f33f6f8c06687de49aa493e4d" """;
             }
         }
 
@@ -48,6 +47,7 @@ pipeline {
             }
         }
 
+        /*
         stage('Build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
@@ -67,6 +67,7 @@ pipeline {
              }
         }
         */
+        
     }
     post {
         always {
