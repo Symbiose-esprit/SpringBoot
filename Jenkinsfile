@@ -79,8 +79,10 @@ pipeline {
         
 	stage('Test JUnit/Mockito') {         
             steps {
-               
-            sh 'mvn test '
+            sh 'mvn test -Ptests,extra-tests,jacoco'
+	    sh 'mvn verify -Pjacoco-generate-report -DskipTests'
+            jacoco(execPattern: 'target/jacoco.exec') 
+            
             }
         }
         
