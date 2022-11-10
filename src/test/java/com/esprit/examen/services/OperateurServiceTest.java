@@ -77,35 +77,6 @@ public class OperateurServiceTest {
         Assertions.assertNotNull(operateur.getFactures());
     }
 
-    @Test
-    public void addOperateur(){
-        var operateur = new Operateur(1L,"hello","hello","admin",new HashSet<Facture>());
-
-        var rs = operateurService.addOperateur(operateur);
-        Assertions.assertEquals("hello",rs.getNom());
-/* 
-		var operateur = new Operateur(1L,"hello","hello","admin",new HashSet<Facture>());
-        var rs = operateurService.addOperateur(operateur);
-        Assertions.assertEquals("hello",rs.getNom()); */
-        Assertions.assertEquals("hello",rs.getPrenom());
-
-        Assertions.assertEquals("admin",rs.getPassword());
-
-    }
-    @Test
-    public void deleteOperateur(){
-        var operateur = new Operateur();
-        operateur.setNom("hello");
-
-        operateur.setPrenom("hello");
-        
-		operateur.setPassword("admin");
-        var rs = operateurRepository.save(operateur);
-        operateurService.deleteOperateur(rs.getIdOperateur());
-		        // assertNull(operateurService.retrieveOperateur(rs.getIdOperateur()));
-
-        assertNull(operateurService.retrieveOperateur(rs.getIdOperateur()));
-    }
 /*     @Test
     public void deleteOperateur(){
         var operateur = new Operateur();
@@ -118,27 +89,5 @@ public class OperateurServiceTest {
         assertNull(operateurService.retrieveOperateur(rs.getIdOperateur()));
     } */
 
-    @Test
-    public void retrieveOperateur(){
-        var operateur = new Operateur();
-        operateur.setNom("hello");
-        operateur.setPrenom("hello");
 
-        operateur.setPassword("admin");
-			
-/*         var op = operateurRepository.save(operateur);
-
-        var rs = operateurService.retrieveOperateur(op.getIdOperateur());
-        Assertions.assertEquals(op.getIdOperateur(),rs.getIdOperateur()); */
-        var op = operateurRepository.save(operateur);
-
-        var rs = operateurService.retrieveOperateur(op.getIdOperateur());
-        Assertions.assertEquals(op.getIdOperateur(),rs.getIdOperateur());
-        Assertions.assertEquals(op.getNom(),rs.getNom());
-		//      operateur.setNom("hello");
-        // operateur.setPrenom("hello");
-
-        // operateur.setPassword("admin");
-		
-    }
 }
