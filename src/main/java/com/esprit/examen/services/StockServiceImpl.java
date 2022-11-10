@@ -59,7 +59,7 @@ public class StockServiceImpl implements IStockService {
 		Stock stock = stockRepository.findById(stockId).orElse(null);
 		log.info("out of method retrieveStock");
 		 long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		 log.info("Method execution time: " + elapsedTime + " milliseconds.");
 
 		return stock;
 	}
