@@ -14,7 +14,7 @@ pipeline {
         stage('Test mvn') {
             steps {
             	sh """ mvn install """;
-                sh """ mvn clean """;
+                sh """ mvn package """;
                 sh """ mvn test """;
             }
         }
@@ -26,10 +26,9 @@ pipeline {
         }
         stage('Nexus') {    
             steps {  
-		script {          
-		sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.2:8081/repository/nexusrepo/ -Dfile=target/tpAchatProject-1.0.jar'
-		}
-               
+		        script {          
+		            sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen -DartifactId=tpAchatProject -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.56.2:8081/repository/nexusrepo/ -Dfile=target/tpAchatProject-1.0.jar'
+		        }
             }
         }
     }
