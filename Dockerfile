@@ -1,5 +1,4 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} achat.jar
-ENTRYPOINT ["java","-jar","/achat.jar"]
-EXPOSE 8089
+FROM openjdk:8
+EXPOSE 8080
+ADD target/tpAchatProject-1.0.jar tpAchatProject-1.0.jar
+ENTRYPOINT ["java", "-jar", "/tpAchatProject-1.0.jar"]
