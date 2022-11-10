@@ -47,24 +47,46 @@ pipeline {
             }
         }
 
-        stage('Build Image') {
+        stage('Clean install') {
+             steps {
+                sh 'mvn clean package -DskipTests'
+             }
+        }
+
+        stage('Docker build Image') {
             steps {
                 sh 'docker build -t mahdibehi/springboot-devops:jenkins .'
             }
         }
 
         /*
-        stage('Deploy Image') {
+        stage('Docker push to Dockerhub') {
             steps {
                 sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
                 sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
         }*/
 
-        stage('Docker Compose') {
+        stage('Docker deploy app') {
              steps {
                 sh 'docker-compose up -d'
              }
+        }
+
+        stage("wait for testing") {
+            steps {
+                script {
+                    sh "sleep 60"
+                }
+            }
+        }
+
+        stage("Postman tests") {
+            steps {
+                script {
+                    sh "newman run https://www.postman.com/collections/b7c659f9bb0ae1cd4656"
+                }
+            }
         }
         
     }
