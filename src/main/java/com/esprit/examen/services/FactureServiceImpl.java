@@ -64,21 +64,21 @@ public class FactureServiceImpl implements IFactureService {
 		for (DetailFacture detail : detailsFacture) {
 			// Récuperer le produit
 			Produit produit = null;
-			if (produitRepository.findById(detail.getProduit().getIdProduit()).isPresent()) {
-				produit = produitRepository.findById(detail.getProduit().getIdProduit()).get();
+			produit = produitRepository.findById(detail.getProduit().getIdProduit()).orElse(null);
+			if (produit != null) {
+				// Calculer le montant total pour chaque détail Facture
+				float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
+				// Calculer le montant remise pour chaque détail Facture
+				float montantRemiseDetail = (prixTotalDetail * detail.getPourcentageRemise()) / 100;
+				float prixTotalDetailRemise = prixTotalDetail - montantRemiseDetail;
+				detail.setMontantRemise(montantRemiseDetail);
+				detail.setPrixTotalDetail(prixTotalDetailRemise);
+				// Calculer le montant total pour la facture
+				montantFacture = montantFacture + prixTotalDetailRemise;
+				// Calculer le montant remise pour la facture
+				montantRemise = montantRemise + montantRemiseDetail;
+				detailFactureRepository.save(detail);
 			}
-			// Calculer le montant total pour chaque détail Facture
-			float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
-			// Calculer le montant remise pour chaque détail Facture
-			float montantRemiseDetail = (prixTotalDetail * detail.getPourcentageRemise()) / 100;
-			float prixTotalDetailRemise = prixTotalDetail - montantRemiseDetail;
-			detail.setMontantRemise(montantRemiseDetail);
-			detail.setPrixTotalDetail(prixTotalDetailRemise);
-			// Calculer le montant total pour la facture
-			montantFacture = montantFacture + prixTotalDetailRemise;
-			// Calculer le montant remise pour la facture
-			montantRemise = montantRemise + montantRemiseDetail;
-			detailFactureRepository.save(detail);
 		}
 		f.setMontantFacture(montantFacture);
 		f.setMontantRemise(montantRemise);

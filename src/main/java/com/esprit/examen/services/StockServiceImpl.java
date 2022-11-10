@@ -82,8 +82,11 @@ public class StockServiceImpl implements IStockService {
 //					+ newLine;
 
 		}
-		log.info(finalMessage.toString());
-		return finalMessage.toString();
+		if (finalMessage != null) {
+			log.info(finalMessage.toString());
+			return finalMessage.toString();
+		} else
+			return "Erreur";
 	}
 
 }
