@@ -33,6 +33,25 @@ pipeline {
                 }
             }
         }
+
+        stage('Build Image') {
+            steps {
+                sh 'docker build -t oussemamestiri/spring:jenkins .'
+            }
+        }
+        
+        stage('Deploy Image') {
+            steps {
+                sh """ docker login -u oussemamestiri -p dckr_pat_zcJ2cuPG_18c9UaMN54nT3hfjL8 """
+                sh """ docker push oussemamestiri/spring:jenkins """
+            }
+        }
+
+        stage('Docker Compose') {
+             steps {
+                sh 'docker-compose up -d'
+             }
+        }
     }
 
     post {
