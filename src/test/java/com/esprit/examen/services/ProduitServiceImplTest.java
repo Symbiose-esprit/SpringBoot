@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
-class ProduitServiceImplTestImpl {
+class ProduitServiceImplTest {
 	@Autowired
 	IProduitService ps;
 	@Autowired
