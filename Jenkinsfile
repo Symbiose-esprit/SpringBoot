@@ -4,7 +4,7 @@ pipeline {
     tools {
       maven 'MAVEN_HOME'
       jdk 'JAVA_HOME'
-      node 'NODE'
+      nodejs 'NODE'
     }
     stages {
 
