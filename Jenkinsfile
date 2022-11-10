@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Tests unitaires') {
             steps {
-                sh 'mvn clean install -DforkCount=0'
+                sh 'mvn test'
             }
         }
         stage('Mvn SonarQube') {
