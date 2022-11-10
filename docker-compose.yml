@@ -20,7 +20,6 @@ services:
       container_name: springboot-devops
       image: mahdibehi/springboot-devops:jenkins
       restart: on-failure
-      env_file: ./.env
       ports:
         - "8089:8089"
       environment:
