@@ -14,6 +14,7 @@ pipeline {
         stage('Test mvn') {
             steps {
             	sh """ mvn install """;
+                sh """ mvn clean """;
                 sh """ mvn package """;
                 sh """ mvn test """;
             }
