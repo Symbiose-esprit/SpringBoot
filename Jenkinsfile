@@ -30,7 +30,9 @@ pipeline {
         }
        stage('MVN Mockito') {
             steps {
-                sh 'mvn test'
+            	sh """ mvn -DskipTests clean package """ 
+                sh """ mvn install """;
+                sh """ mvn test """;
             }
        }
         
