@@ -28,13 +28,7 @@ pipeline {
                 sh 'mvn sonar:sonar  -Dsonar.login=admin -Dsonar.password=yassou'
             }
         }
-       stage('MVN Mockito') {
-            steps {
-            	sh """ mvn -DskipTests clean package """ 
-                sh """ mvn install """;
-                sh """ mvn test """;
-            }
-       }
+
         stage('NEXUS'){
             steps{
                 sh 'mvn deploy -DskipStaging=true'
