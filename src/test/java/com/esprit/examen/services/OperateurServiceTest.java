@@ -1,86 +1,82 @@
-// /* package com.esprit.examen.services;
-
-// import static org.junit.Assert.assertNotNull;
-// import static org.mockito.Mockito.verify;
-
-// import java.text.ParseException;
-// import java.text.SimpleDateFormat;
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.Date;
-// import java.util.List;
-// import java.util.Optional;
-// import java.util.Set;
-
-// import org.junit.jupiter.api.MethodOrderer;
-// import org.junit.jupiter.api.Order;
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.TestMethodOrder;
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.Mockito;
-// import org.mockito.junit.jupiter.MockitoExtension;
-
-// import com.esprit.examen.entities.*;
-// import com.esprit.examen.repositories.FactureRepository;
-// import com.esprit.examen.repositories.OperateurRepository;
-
-// import lombok.extern.slf4j.Slf4j;
-
-// @ExtendWith(MockitoExtension.class)
-// @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-// @Slf4j
-// class OperateurServiceTest {
-
-// 	@Mock
-// 	OperateurRepository operateurRepository;
-// 	@Mock
-//     FactureRepository factureRepository;
-
-// 	@InjectMocks
-// 	OperateurServiceImpl operateurService;
-
-//     @AfterEach
-//     void
-//     setDown() {
-//         operateurRepository.deleteAll();
-//     }
-//     @BeforeEach
-//     void
-//     setUp() {
-//         operateurRepository.deleteAll();
-//     }
-//     @Test
-//     public void retrieveAllOperateurs(){
-//         var facture = new Facture();
-//         facture.setMontantRemise(0.5F);
-//         facture.setArchivee(true);
-//         // facture.setArchivee(false);
+package com.esprit.examen.mytest;
 
 
-//         facture.setMontantFacture(10F);
-//         facture.setDateCreationFacture(new Date());
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-//         facture.setDateDerniereModificationFacture(new Date());
-//         factureRepository.save(facture);
-//         var listFactures = new HashSet<Facture>();
-//         listFactures.add(facture);
-//         // operateur.setFactures(listFactures);
 
-//         var operateur = new Operateur();
-//         operateur.setFactures(listFactures);
-//         operateur.setNom("hello");
-		
-//         operateur.setPrenom("hello");
-//         operateur.setPassword("admin");/* 
-//         var rs = operateurService.retrieveAllOperateurs();
-//         Assertions.assertEquals(1 , rs.size());
-//         Assertions.assertEquals("admin",rs.get(0).getNom()); */
-//         operateurRepository.save(operateur);
-//         var rs = operateurService.retrieveAllOperateurs();
-//         Assertions.assertEquals(1 , rs.size());
-//         Assertions.assertEquals("admin",rs.get(0).getNom());
-//         Assertions.assertNotNull(operateur.getFactures());
-//     }
-// } */
+
+import org.junit.Test;
+
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.esprit.examen.TpAchatProjectApplication;
+import com.esprit.examen.entities.Operateur;
+import com.esprit.examen.repositories.OperateurRepository;
+import com.esprit.examen.services.IOperateurService;
+
+import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = TpAchatProjectApplication.class)
+
+
+public class OperateurServiceImplTest {
+
+	@Mock
+	private OperateurRepository operateurRepository;
+	
+
+	@InjectMocks
+	IOperateurService operateurService;
+	
+	private Operateur operateur1 = new Operateur(1L,"test1","tes1","546125");
+	private Operateur operateur2 = new Operateur(2L,"test2","test2","546125");
+	
+	  @Test
+		public void addOperateurTest() {
+	    	when(operateurRepository.save(operateur1)).thenReturn(operateur1);
+	    	assertNotNull(operateur1);
+	    	
+	    	Operateur persisted = operateurService.addOperateur(operateur1);
+			assertEquals(operateur1, persisted); 
+	    	
+			System.out.println("add operators works !");
+		}
+	
+	 @Test 
+	    public void retrieveAllOperateursTest() {
+	    	when(operateurRepository.findAll()).thenReturn(Stream
+	    			.of(operateur1,operateur2)
+	    			.collect(Collectors.toList()));
+	    	
+	    	assertEquals(2,operateurService.retrieveAllOperateurs().size());
+	    	System.out.println("Retrieve all operators works !");
+	    }
+	
+	   @Test 
+	    public void UpdateOperateurTest() {
+	    	when(operateurRepository.save(operateur1)).thenReturn(operateur1);
+	    	assertNotNull(operateur1);
+	    	assertEquals(operateur1, operateurService.updateOperateurTest(operateur1));
+	    	System.out.println("Update operators works!");
+	    }
+	    
+	    @Test
+	    public void retrieveOperateurTest() {
+	    	when(operateurRepository.findById(operateur1.getIdOperateur())).thenReturn(Optional.of(operateur1));
+	    	assertEquals(operateur1, operateurService.retrieveOperateur(operateur1.getIdOperateur()));
+	    	System.out.println("Retrieve operator by id works !");
+	    }
+	
+
+}
