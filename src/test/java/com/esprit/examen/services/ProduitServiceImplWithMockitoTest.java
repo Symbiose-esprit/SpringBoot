@@ -57,9 +57,9 @@ class ProduitServiceImplWithMockitoTest {
 		List<Produit> products = new ArrayList<Produit>() {
 			{
 				add(Produit.builder().codeProduit("tp").libelleProduit("iphone").prix(1500).dateCreation(date)
-						.dateCreation(date2).detailFacture(f).categorieProduit(cat).build());
+						.dateDerniereModification(date2).detailFacture(f).categorieProduit(cat).build());
 				add(Produit.builder().codeProduit("tp").libelleProduit("samsung").prix(950).dateCreation(date)
-						.dateCreation(date2).detailFacture(f).categorieProduit(cat).build());
+						.dateDerniereModification(date2).detailFacture(f).categorieProduit(cat).build());
 			}
 		};
 //		Produit p = Produit.builder().codeProduit("tp").libelleProduit("iphone").prix(1500).dateCreation(date)
@@ -73,5 +73,36 @@ class ProduitServiceImplWithMockitoTest {
 		ps.deleteProductsByCategory("tech");
 		verify(pr).findAll();
 
+	}
+
+	@Test
+	@Order(4)
+	void getProductsBetweenDates() throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = dateFormat.parse("01/09/2022");
+		Date date2 = dateFormat.parse("14/12/2022");
+		Date date3 = dateFormat.parse("25/07/2022");
+		Date date4 = dateFormat.parse("07/02/2023");
+		CategorieProduit cat = CategorieProduit.builder().codeCategorie("cp").libelleCategorie("tech").produits(s)
+				.build();
+		catr.save(cat);
+		List<Produit> products = new ArrayList<Produit>() {
+			{
+				add(Produit.builder().codeProduit("tp").libelleProduit("iphone").prix(1500).dateCreation(date)
+						.dateDerniereModification(date2).detailFacture(f).categorieProduit(cat).build());
+				add(Produit.builder().codeProduit("tp").libelleProduit("samsung").prix(950).dateCreation(date)
+						.dateDerniereModification(date2).detailFacture(f).categorieProduit(cat).build());
+			}
+		};
+		Mockito.when(pr.findAll()).thenReturn(Optional.of(products).orElse(null));
+		assertNotNull(products);
+		List<Produit> produits = ps.retrieveAllProduits();
+		for (Produit produit : produits) {
+			if (produit.getDateCreation().after(date3) && produit.getDateDerniereModification().before(date4)) {
+				log.info("These are the products : " + produit.toString());
+			}
+
+		}
+		verify(pr).findAll();
 	}
 }
