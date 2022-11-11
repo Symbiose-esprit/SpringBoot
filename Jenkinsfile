@@ -5,7 +5,7 @@ pipeline {
           jdk 'JAVA_HOME' 
         }
         environment {
-        DOCKERHUB_CREDENTIALS = credentials('Dockerhub Account')
+        DOCKERHUB_CREDENTIALS = credentials('docker')
     }
     stages {
         stage('Checkout GIT') {
