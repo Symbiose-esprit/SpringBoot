@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(classes = TpAchatProjectApplication.class)
 
 
-public class OperateurServiceImplTest {
+public class OperateurServiceTest {
 
 	@Mock
 	private OperateurRepository operateurRepository;
