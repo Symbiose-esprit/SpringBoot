@@ -3,10 +3,13 @@ package com.esprit.examen.services;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -16,12 +19,11 @@ public class StockServiceImpl implements IStockService {
 	@Autowired
 	StockRepository stockRepository;
 
-
 	@Override
 	public List<Stock> retrieveAllStocks() {
 		// récuperer la date à l'instant t1
 		log.info("In method retrieveAllStocks");
-		List<Stock> stocks = (List<Stock>) stockRepository.findAll();
+		List<Stock> stocks = stockRepository.findAll();
 		for (Stock stock : stocks) {
 			log.info(" Stock : " + stock);
 		}
@@ -36,7 +38,7 @@ public class StockServiceImpl implements IStockService {
 		// récuperer la date à l'instant t1
 		log.info("In method addStock");
 		return stockRepository.save(s);
-		
+
 	}
 
 	@Override
@@ -58,7 +60,7 @@ public class StockServiceImpl implements IStockService {
 		log.info("In method retrieveStock");
 		Stock stock = stockRepository.findById(stockId).orElse(null);
 		log.info("out of method retrieveStock");
-		 long elapsedTime = System.currentTimeMillis() - start;
+		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
 
 		return stock;
@@ -69,18 +71,20 @@ public class StockServiceImpl implements IStockService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		Date now = new Date();
 		String msgDate = sdf.format(now);
-		String finalMessage = "";
+		StringBuilder finalMessage = null;
 		String newLine = System.getProperty("line.separator");
-		List<Stock> stocksEnRouge = (List<Stock>) stockRepository.retrieveStatusStock();
+		List<Stock> stocksEnRouge = stockRepository.retrieveStatusStock();
 		for (int i = 0; i < stocksEnRouge.size(); i++) {
-			finalMessage = newLine + finalMessage + msgDate + newLine + ": le stock "
+			finalMessage = new StringBuilder(newLine + finalMessage + msgDate + newLine + ": le stock "
 					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
 					+ " inférieur à la quantité minimale a ne pas dépasser de " + stocksEnRouge.get(i).getQteMin()
-					+ newLine;
-
+					+ newLine);
 		}
-		log.info(finalMessage);
-		return finalMessage;
+		if (finalMessage != null) {
+			log.info(finalMessage.toString());
+			return finalMessage.toString();
+		} else
+			return "Erreur";
 	}
 
 }
