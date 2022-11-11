@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,14 +32,14 @@ public class SecteurActivTest {
     @MockBean
     private SecteurActiviteRepository repository;
 
-    /*
+
     @Test
-    public void getUsersTest() {
-        when(repository.findAll()).thenReturn(Stream
-                .of(new SecteurActivite(1, "code", "mahdi", ["mahdi"]), new User(2, "nacef", "nacef", "nacef")).collect(Collectors.toList()));
-        assertEquals(2, service.getUsers().size());
+    public List<SecteurActivite> getAllSecteurActivite()
+    {
+        return (List<SecteurActivite>) this.repository.findAll();
     }
 
+    /*
     @Test
     public void getUserbyUsernameTest() {
         String username = "tunisie";
