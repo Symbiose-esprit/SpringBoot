@@ -39,16 +39,14 @@ services:
         - backend
         - frontend
 
-  front-devops:
-      container_name: front-devops
-      image: mahdibehi/front-devops:jenkins
-      ports:
-        - "4041:80" # Map the exposed port 80 on the container to port 8081 on the host machine
-      restart: always
-      depends_on:
-        - spring-devops
-      networks:
-        - frontend
+  angular-docker:
+    container_name: angular-docker-container
+    image: mahdibehi/front-devops:jenkins
+    build: ./angular
+    ports:
+      - '4401:80'
+    networks:
+      - frontend
 
 
 volumes:
