@@ -39,16 +39,6 @@ services:
         - backend
         - frontend
 
-  angular-docker:
-    container_name: angular-docker-container
-    image: mahdibehi/front-devops:jenkins
-    build: ./angular
-    ports:
-      - '4401:80'
-    networks:
-      - frontend
-
-
 volumes:
   db:
 
