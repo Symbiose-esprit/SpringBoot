@@ -53,11 +53,11 @@ pipeline {
                 sh 'docker-compose up -d'
              }
         }
-        stage('Test Unitaires') {         
+       /*  stage('Test Unitaires') {         
             steps {
             sh 'mvn test'         
             }
-        }
+        } */
     }
 
     post {
