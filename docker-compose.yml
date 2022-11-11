@@ -20,7 +20,7 @@ services:
       depends_on:
         - mysql-devops
       container_name: springboot-devops
-      image: azizbannour/springbootAchat:jenkins
+      image: azizbannour/springbootachat:jenkins
       restart: on-failure
       ports:
         - "8089:8089"
