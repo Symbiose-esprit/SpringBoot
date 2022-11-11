@@ -21,8 +21,8 @@ pipeline {
         }
         stage('Mvn SonarQube') {
             steps {
-            	sh """ mvn  sonar:sonar Dsonar.host.url=http://192.168.33.10:9000/ 
-                              -Dsonar.login=admin  -Dsonar.password=sonar """ 
+            	sh """ mvn sonar:sonar 
+                              -Dsonar.login=533c68972f5115639846794d9b36ea3f9a8e32bd""" 
             }
         }
         
