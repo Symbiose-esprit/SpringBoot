@@ -15,7 +15,7 @@ services:
   app:
     depends_on:
       - mysqldb
-    image: yasminebaouab/tpachatproject
+    image: yasminebaouab/achat
     container_name: yasminespring
     restart: on-failure
     ports:
