@@ -51,14 +51,14 @@ pipeline {
              
             steps {
                
-		/* withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+		 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
       		  sh " docker login -u aminelaajimi -p ${dockerHubPwd}" 
-   		}*/
+   		}
         	echo 'Deploying ...' ;
                
          
 	    
-            /* sh 'docker push aminelaajimi/tpachatprojet:1.0.0' */
+             sh 'docker push aminelaajimi/tpachatprojet:1.0.0' 
         }        
 
     }
