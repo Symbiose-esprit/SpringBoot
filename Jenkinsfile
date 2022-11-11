@@ -4,6 +4,9 @@ pipeline {
           maven 'M2_HOME' 
           jdk 'JAVA_HOME' 
         }
+        environment {
+        DOCKERHUB_CREDENTIALS = credentials('Dockerhub Account')
+    }
     stages {
         stage('Checkout GIT') {
             steps {
@@ -38,6 +41,28 @@ pipeline {
             steps{
                 sh 'mvn deploy -DskipStaging=true'
             }
+        }
+         stage("Building Docker Image") {
+                steps{
+                    sh 'docker build -t $DOCKERHUB_CREDENTIALS_USR/achat .'
+                }
+        }
+        
+        stage("Login to DockerHub") {
+                steps{
+                   // sh 'sudo chmod 666 /var/run/docker.sock'
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+                }
+        }
+        stage("Push to DockerHub") {
+                steps{
+                    sh 'docker push $DOCKERHUB_CREDENTIALS_USR/achat'
+                }
+        }
+        stage("Docker-compose") {
+                steps{
+                    sh 'docker-compose up -d'
+                }
         }
         
     }
