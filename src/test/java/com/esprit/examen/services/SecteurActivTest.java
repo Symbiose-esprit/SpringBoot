@@ -32,7 +32,7 @@ public class SecteurActivTest {
     @MockBean
     private SecteurActiviteRepository repository;
 
-
+    /*
     @Test
     public List<SecteurActivite> getAllSecteurActivite()
     {
