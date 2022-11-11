@@ -74,7 +74,8 @@ pipeline {
         
 	stage('Test JUnit/Mockito') {         
             steps {
-            sh 'mvn test'         
+            sh 'mvn test'
+	    jacoco(execPattern: 'target/jacoco.exec')          
             }
         }
 	stage('Mvn SonarQube') {
