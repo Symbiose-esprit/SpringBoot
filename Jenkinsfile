@@ -66,6 +66,7 @@ pipeline {
             }
         }
 
+        /*
         stage('Docker push to Dockerhub') {
             steps {
                 sh """ docker login -u mahdibehi -p dckr_pat_UoNF-WMddLEf6c9U8wG_AIisy44 """
@@ -73,6 +74,7 @@ pipeline {
                 sh """ docker push mahdibehi/springboot-devops:jenkins """
             }
         }
+        */
 
         stage('Docker compose up') {
              steps {
